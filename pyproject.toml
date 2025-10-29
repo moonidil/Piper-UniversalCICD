@@ -19,3 +19,7 @@ profile = "black"
 [tool.pytest.ini_options]
 addopts = "-q"
 testpaths = ["tests"]
+
+[tool.mypy]
+mypy_path = "src"
+packages = ["piper"]

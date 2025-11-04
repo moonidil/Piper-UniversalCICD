@@ -42,3 +42,6 @@ strict = true
 [[tool.mypy.overrides]]
 module = ["rich.*"]
 ignore_missing_imports = true
+
+[project.scripts]
+piper = "piper.cli:main"

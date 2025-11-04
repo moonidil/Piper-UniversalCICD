@@ -26,7 +26,7 @@ SIGNALS: Dict[str, List[str]] = {
 }
 
 
-def scan(root: str = ".") -> dict:
+def scan(root: str = ".") -> Detection:
     """
     scan directory for technology indicators and detect project configuration
 
@@ -72,7 +72,7 @@ def scan(root: str = ".") -> dict:
     return {"types": types_list, "framework": framework, "deploy": deploy, "signals": found}
 
 
-def write_report(data: dict, path: str = ".pipeline/detection.json") -> str:
+def write_report(data: Detection, path: str = ".pipeline/detection.json") -> str:
     """
     Write detection results as JSON report to specified path
 

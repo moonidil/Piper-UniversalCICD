@@ -1,8 +1,10 @@
+from pprint import pprint
+from typing import Any, Dict
 from rich.console import Console
 from rich.table import Table
 
 
-def pretty(detection: dict):
+def pretty(detection: Dict[str, Any]) -> None:
     """
     display detection results in a formatted table using Rich library
 
@@ -12,6 +14,7 @@ def pretty(detection: dict):
     Args:
         detection: dictionary containing detection results from scan()
     """
+    pprint(detection)
     console = Console()
 
     # initialise table with title and columns

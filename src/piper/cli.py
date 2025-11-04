@@ -1,11 +1,13 @@
 import click
+from typing import Any, Dict, cast
+
 from .detect import scan as do_scan, write_report
 from .report import pretty
 from .deps import install_for
 
 
 @click.group()
-def main():
+def main() -> None:
     """CLI entry point for code detection tool"""
     ...
 
@@ -13,7 +15,7 @@ def main():
 @main.command()
 @click.option("--root", default=".", help="Root directory to scan")
 @click.option("--report", default=".pipeline/detection.json", help="JSON report output path")
-def scan(root, report):
+def scan(root: str, report: str) -> None:
     """
     scan directory for code patterns and generate detection report.
 
@@ -23,13 +25,12 @@ def scan(root, report):
     # run detection scan and generate reports
     detection_data = do_scan(root)
     write_report(detection_data, report)
-    # display results in readable format
-    pretty(detection_data)
+    pretty(cast(Dict[str, Any], detection_data))
 
 
 @main.command()
 @click.option("--root", default=".", help="Root directory to scan and install dependencies for")
-def install(root):
+def install(root: str) -> None:
     """
     Scan project and install dependencies for detected technologies.
 
@@ -43,4 +44,4 @@ def install(root):
     detection_data = do_scan(root)
 
     # install dependencies based on the detected technologies
-    install_for(detection_data, root)
+    install_for(cast(Dict[str, Any], detection_data), root)
